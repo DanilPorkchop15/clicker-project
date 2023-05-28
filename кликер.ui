@@ -1,0 +1,2670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BurgerClicker</class>
+ <widget class="QMainWindow" name="BurgerClicker">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1037</width>
+    <height>780</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1037</width>
+    <height>780</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1037</width>
+    <height>780</height>
+   </size>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+	background-color: #b1f0cc;
+}
+
+*{
+	font-size: 12px;
+	font-family: &quot;Verdana&quot;;
+}
+
+QPushButton:pressed{
+	background-color:rgbe(255, 255, 255, 0);
+}
+
+#clickerFrame{
+	background-color: rgba(255, 255, 255, 0.3);
+	border-radius: 30px;
+}
+
+#clickerFrame Qlaber{
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+#burgerButton{
+	background-color:rgba(255, 255, 255, 0);
+}
+
+#mainUpgradeFrame QFrame{
+		background-color: #8edeb0;
+		border-radius: 22px;
+}
+
+
+#mainUpgradeFrame QLabel{
+	background-color: none;
+}
+
+#mainUpgradeBuy, #mainUpgradeBuy_2, #mainUpgradeBuy_3, #mainUpgradeBuy_4, #mainUpgradeBuy_5, #mainUpgradeBuy_6 {
+		background-color: rgba(0, 0, 0, 0.05);
+		border-radius: 15px;
+}
+
+#mainUpgradeBuy:hover, #mainUpgradeBuy_2:hover, #mainUpgradeBuy_3:hover, #mainUpgradeBuy_4:hover, #mainUpgradeBuy_5:hover, #mainUpgradeBuy_6:hover{
+		background-color: rgba(142, 123, 123, 0.1);
+		border: 1px solid gray
+}
+
+#mainUpgradeBuy:pressed, #mainUpgradeBuy_2:pressed, #mainUpgradeBuy_3:pressed, #mainUpgradeBuy_4:pressed, #mainUpgradeBuy_5:pressed, #mainUpgradeBuy_6:pressed {
+		background-color: rgba(100, 110, 120, 0.3);
+		transform: scale(0.9);
+}
+
+#helpUpgradeFrame QFrame{
+		background-color: #8edeb0;
+		border-radius: 22px;
+}
+
+
+#helpUpgradeFrame QLabel{
+	background-color: none;
+}
+
+#helpUpgradeBuy, #helpUpgradeBuy_2, #helpUpgradeBuy_3, #helpUpgradeBuy_4, #helpUpgradeBuy_5, #helpUpgradeBuy_6 {
+		background-color: rgba(0, 0, 0, 0.05);
+		border-radius: 15px;
+}
+
+#helpUpgradeBuy:hover, #helpUpgradeBuy_2:hover, #helpUpgradeBuy_3:hover, #helpUpgradeBuy_4:hover, #helpUpgradeBuy_5:hover, #helpUpgradeBuy_6:hover{
+		background-color: rgba(142, 123, 123, 0.1);
+		border: 1px solid gray
+}
+
+#helpUpgradeBuy:pressed, #helpUpgradeBuy_2:pressed, #helpUpgradeBuy_3:pressed, #helpUpgradeBuy_4:pressed, #helpUpgradeBuy_5:pressed, #helpUpgradeBuy_6:pressed {
+		background-color: rgba(100, 110, 120, 0.3);
+		transform: scale(0.9);
+}
+
+#upgradeFrame{
+	background-color: rgba(0, 0, 0, 0.09);
+	border-radius: 27px;
+}
+
+#mainUpgradeFrame, #helpUpgradeFrame{
+	background-color: #b1f0cc;
+	border-radius: 25px;
+}
+
+#mainUpgradeMenuFrame{
+	background-color: rgba(0, 0, 0, 0)
+}
+
+#selectUpgradeFrame{
+	background-color:rgba(255, 255, 255, 0);
+}
+#upgradesButton{
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px
+}
+
+#helpsButton{
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px
+}
+
+#helpsButton:hover, #upgradesButton:hover{
+		border: 1px solid gray
+}
+
+#nameLabel {
+	border-radius: 19px
+}
+
+#countLabel{
+	border-radius: 20px;
+	background-color: #b1f0cc
+}
+
+#helpCountLabel{
+	border-radius: 15px;
+	background-color: #b1f0cc
+}
+#statisticsFrame{
+	border-radius: 30px;
+	background-color: rgba(255, 255, 255, 0.4)
+}
+
+#settingsFrame QPushButton{
+	paddind: 10px;
+	border-radius: 25px;
+	
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+#settingsFrame QPushButton:hover{
+		background-color: rgba(142, 123, 123, 0.1);
+}
+
+#settingsFrame QPushButton:pressed{
+		background-color: rgba(0, 0, 0, 0.2);
+}
+
+#githubFrame QPushButton{
+	paddind: 10px;
+	border-radius: 25px;
+	
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+#githubFrame QPushButton:hover{
+		background-color: rgba(142, 123, 123, 0.1);
+}
+
+#githubFrame QPushButton:pressed{
+		background-color: rgba(0, 0, 0, 0.2);
+}
+
+#telegramFrame QPushButton{
+	paddind: 10px;
+	border-radius: 25px;
+	
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+#telegramFrame QPushButton:hover{
+		background-color: rgba(142, 123, 123, 0.1);
+}
+
+#telegramFrame QPushButton:pressed{
+		background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+#settings{
+	background-color: rgba(21, 55, 12, 0.3);
+}
+
+#settingsWrapper{
+	border-radius: 50px;
+}
+
+#settings QPushButton{
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.4)
+}
+
+#settings QPushButton:hover{
+		background-color: rgba(142, 123, 123, 0.1);
+		border: 1px solid gray
+}
+
+#settings QPushButton:pressed{
+		background-color: rgba(0, 0, 0, 0.2);
+}
+
+#statisticsToolBox QWidget{
+	border-radius: 20px;
+}
+
+#statisticsToolBox QLabel{
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.4)
+}
+
+#statisticsToolBox QLine{
+	background-color: rgba(0, 0, 0, 1)
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QFrame" name="upgradeFrame">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>10</y>
+      <width>431</width>
+      <height>761</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>431</width>
+      <height>761</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>431</width>
+      <height>761</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="midLineWidth">
+     <number>1</number>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item alignment="Qt::AlignTop">
+      <widget class="QFrame" name="selectUpgradeFrame">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Verdana</family>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="upgradesButton">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Verdana</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Улучшения</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../Downloads/icons.qrc">
+            <normaloff>:/icons/icons8-купить-обновление-80.png</normaloff>:/icons/icons8-купить-обновление-80.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>25</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="helpsButton">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Verdana</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Помощники</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../Downloads/icons.qrc">
+            <normaloff>:/icons/icons8-связь-и-помощь-100.png</normaloff>:/icons/icons8-связь-и-помощь-100.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>25</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="mainUpgradeMenuFrame">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>1212121</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Verdana</family>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QFrame" name="mainUpgradeFrame">
+          <property name="maximumSize">
+           <size>
+            <width>1234286</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Verdana</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QFrame" name="mainUpgrade">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QPushButton" name="mainUpgradeIcon">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-mouth-64.png</normaloff>:/icons/icons8-mouth-64.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="autoDefault">
+                 <bool>false</bool>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="mainUpgradeName">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Размер рта</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="mainUpgradeBuy">
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="mainUpgrade_2">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QPushButton" name="mainUpgradeIcon_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-denture-48.png</normaloff>:/icons/icons8-denture-48.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="mainUpgradeName_2">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Мощность челюсти</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="mainUpgradeBuy_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="mainUpgrade_3">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QPushButton" name="mainUpgradeIcon_3">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-stomach-64.png</normaloff>:/icons/icons8-stomach-64.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="mainUpgradeName_3">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Объем желудка</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="mainUpgradeBuy_3">
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="mainUpgrade_4">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QPushButton" name="mainUpgradeIcon_4">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-intestine-64.png</normaloff>:/icons/icons8-intestine-64.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="mainUpgradeName_4">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Сила кишки</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="mainUpgradeBuy_4">
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="mainUpgrade_5">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <item>
+               <widget class="QPushButton" name="mainUpgradeIcon_5">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-savouring-delicious-food-face-48.png</normaloff>:/icons/icons8-savouring-delicious-food-face-48.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="mainUpgradeName_5">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Аппетит</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="mainUpgradeBuy_5">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="mainUpgrade_6">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QPushButton" name="mainUpgradeIcon_6">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-burger-60.png</normaloff>:/icons/icons8-burger-60.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="mainUpgradeName_6">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Уровень бургера</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="mainUpgradeBuy_6">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="helpUpgradeFrame">
+          <property name="maximumSize">
+           <size>
+            <width>0</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Verdana</family>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QFrame" name="helpUpgrade">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_16">
+              <item>
+               <widget class="QPushButton" name="mainUpgradeIcon_13">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-crying-baby-100.png</normaloff>:/icons/icons8-crying-baby-100.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="autoDefault">
+                 <bool>false</bool>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="helpUpgradeName">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Капризный ребенок</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="helpUpgradeBuy">
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="helpUpgrade_2">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_17">
+              <item>
+               <widget class="QPushButton" name="helUpgradeIcon_14">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-student-64.png</normaloff>:/icons/icons8-student-64.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="helpUpgradeName_2">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Бедный студент</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="helpUpgradeBuy_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="helpUpgrade_3">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_20">
+              <item>
+               <widget class="QPushButton" name="mainUpgradeIcon_17">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-worker-60.png</normaloff>:/icons/icons8-worker-60.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="helpUpgradeName_3">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Уставший работяга</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="helpUpgradeBuy_3">
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="helpUpgrade_4">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_21">
+              <item>
+               <widget class="QPushButton" name="mainUpgradeIcon_18">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-eating-64.png</normaloff>:/icons/icons8-eating-64.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="helpUpgradeName_4">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Любитель поесть</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="helpUpgradeBuy_4">
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="helpUpgrade_5">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_18">
+              <item>
+               <widget class="QPushButton" name="mainUpgradeIcon_15">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/fat.png</normaloff>:/icons/fat.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="helpUpgradeName_5">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Голодный толстяк</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="helpUpgradeBuy_5">
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="helpUpgrade_6">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_19">
+              <item>
+               <widget class="QPushButton" name="mainUpgradeIcon_16">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/fat_guy-removebg-preview (1) (1).png</normaloff>:/icons/fat_guy-removebg-preview (1) (1).png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="helpUpgradeName_6">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                  <pointsize>-1</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Америкос</string>
+                </property>
+                <property name="margin">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="helpUpgradeBuy_6">
+                <property name="minimumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>130</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>10 бургеров</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../Downloads/icons.qrc">
+                  <normaloff>:/icons/icons8-buy-32.png</normaloff>:/icons/icons8-buy-32.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="settingsFrame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>710</y>
+      <width>62</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_6">
+     <item>
+      <widget class="QPushButton" name="settingsMenuButton">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Verdana</family>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../Downloads/icons.qrc">
+         <normaloff>:/icons/icons8-settings.svg</normaloff>:/icons/icons8-settings.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>35</width>
+         <height>35</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="clickerFrame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>143</y>
+      <width>581</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QLabel" name="nameLabel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>70</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Verdana</family>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>Вонючий бургер</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="burgerButton">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Verdana</family>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../Downloads/imgs.qrc">
+         <normaloff>:/images/бургер7.png</normaloff>:/images/бургер7.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>450</width>
+         <height>450</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="statisticsFrame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>581</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="countLabel">
+       <property name="font">
+        <font>
+         <family>Verdana</family>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>Съедено: 0 бургеров</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="helpCountLabel">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Verdana</family>
+         <pointsize>-1</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>Помощь: 0/сек.</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="settings">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>0</width>
+      <height>780</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>780</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1037</width>
+      <height>780</height>
+     </size>
+    </property>
+    <property name="toolTipDuration">
+     <number>0</number>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_7">
+     <property name="leftMargin">
+      <number>11</number>
+     </property>
+     <property name="topMargin">
+      <number>11</number>
+     </property>
+     <property name="rightMargin">
+      <number>11</number>
+     </property>
+     <property name="bottomMargin">
+      <number>11</number>
+     </property>
+     <item alignment="Qt::AlignHCenter">
+      <widget class="QFrame" name="settingsWrapper">
+       <property name="minimumSize">
+        <size>
+         <width>518</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>518</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_14">
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QFrame" name="settingsLabelWrapper">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+            <widget class="QLabel" name="settingsLabel">
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>НАСТРОЙКИ</string>
+             </property>
+             <property name="margin">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QFrame" name="frame_3">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+            <widget class="QLabel" name="volumeLabel">
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>ЗВУК</string>
+             </property>
+             <property name="margin">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QPushButton" name="pushButton">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>ВЫКЛЮЧИТЬ</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../Downloads/icons.qrc">
+               <normaloff>:/icons/icons8-mute-100.png</normaloff>:/icons/icons8-mute-100.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>35</width>
+               <height>35</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QFrame" name="frame_6">
+          <property name="minimumSize">
+           <size>
+            <width>459</width>
+            <height>350</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>450</width>
+            <height>400</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+            <widget class="QLabel" name="statisticsLabel">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>СТАТИСТИКА</string>
+             </property>
+             <property name="margin">
+              <number>10</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolBox" name="statisticsToolBox">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>300</height>
+              </size>
+             </property>
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="page">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>422</width>
+                <height>312</height>
+               </rect>
+              </property>
+              <attribute name="icon">
+               <iconset resource="../Downloads/icons.qrc">
+                <normaloff>:/icons/icons8-down-button-100.png</normaloff>:/icons/icons8-down-button-100.png</iconset>
+              </attribute>
+              <attribute name="label">
+               <string>ОТКРЫТЬ СТАТИСТИКУ</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_10">
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>Актуальное количество съеденныъ бургеров: 0</string>
+                 </property>
+                 <property name="margin">
+                  <number>15</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>Общее количество съеденных бургеров</string>
+                 </property>
+                 <property name="margin">
+                  <number>15</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_6">
+                 <property name="text">
+                  <string>Общее количество улучшений: 0</string>
+                 </property>
+                 <property name="margin">
+                  <number>15</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>Количество улучшений клика: 0</string>
+                 </property>
+                 <property name="margin">
+                  <number>15</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_8">
+                 <property name="text">
+                  <string>Время, проведенное в игре: 0</string>
+                 </property>
+                 <property name="margin">
+                  <number>15</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_7">
+                 <property name="text">
+                  <string>Количество улучшений помощников: 0</string>
+                 </property>
+                 <property name="margin">
+                  <number>15</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="page_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>439</width>
+                <height>240</height>
+               </rect>
+              </property>
+              <attribute name="icon">
+               <iconset resource="../Downloads/icons.qrc">
+                <normaloff>:/icons/icons8-slide-up-100.png</normaloff>:/icons/icons8-slide-up-100.png</iconset>
+              </attribute>
+              <attribute name="label">
+               <string>ЗАКРЫТЬ СТАТИСТИКУ</string>
+              </attribute>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QFrame" name="frame_5">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_12">
+           <item>
+            <widget class="QPushButton" name="returnButton">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>ВЕРНУТЬСЯ</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../Downloads/icons.qrc">
+               <normaloff>:/icons/icons8-return-64.png</normaloff>:/icons/icons8-return-64.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>35</width>
+               <height>35</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QFrame" name="frame_4">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_13">
+           <item alignment="Qt::AlignTop">
+            <widget class="QPushButton" name="exitButton">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>ВЫЙТИ</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../Downloads/icons.qrc">
+               <normaloff>:/icons/icons8-close-window-64.png</normaloff>:/icons/icons8-close-window-64.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>35</width>
+               <height>35</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="githubFrame">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>710</y>
+      <width>62</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_17">
+     <item>
+      <widget class="QPushButton" name="githubButton">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Verdana</family>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../Downloads/icons.qrc">
+         <normaloff>:/icons/icons8-github-64.png</normaloff>:/icons/icons8-github-64.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>35</width>
+         <height>35</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="telegramFrame">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>710</y>
+      <width>62</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_18">
+     <item>
+      <widget class="QPushButton" name="telegramButton">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Verdana</family>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../Downloads/icons.qrc">
+         <normaloff>:/icons/icons8-telegram-48.png</normaloff>:/icons/icons8-telegram-48.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>35</width>
+         <height>35</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../Downloads/imgs.qrc"/>
+  <include location="../Downloads/icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>
