@@ -162,7 +162,14 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 "}\n"
 "\n"
 "#helpsButton:hover, #upgradesButton:hover{\n"
+"        background-color: rgba(255, 255, 255, 0.1);\n"
 "        border: 1px solid gray\n"
+"}\n"
+"\n"
+"\n"
+"#helpsButton:pressed, #upgradesButton:pressed{\n"
+"        background-color: rgba(0, 100, 0, 0.1);\n"
+"        border-top: 2px solid gray\n"
 "}\n"
 "\n"
 "#nameLabel {\n"
@@ -198,7 +205,6 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 "}\n"
 "\n"
 "#githubFrame QPushButton{\n"
-"    paddind: 10px;\n"
 "    border-radius: 25px;\n"
 "    \n"
 "    background-color: rgba(0, 0, 0, 0.12);\n"
@@ -213,7 +219,6 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 "}\n"
 "\n"
 "#telegramFrame QPushButton{\n"
-"    paddind: 10px;\n"
 "    border-radius: 25px;\n"
 "    \n"
 "    background-color: rgba(0, 0, 0, 0.12);\n"
@@ -1199,6 +1204,9 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
         self.allCountLabel = QtWidgets.QLabel(self.page)
         self.allCountLabel.setObjectName("allCountLabel")
         self.verticalLayout_10.addWidget(self.allCountLabel)
+        self.clickPowerLabel = QtWidgets.QLabel(self.page)
+        self.clickPowerLabel.setObjectName("allCiclPowerLabel")
+        self.verticalLayout_10.addWidget(self.clickPowerLabel)
         self.allUpgradesLabel = QtWidgets.QLabel(self.page)
         self.allUpgradesLabel.setObjectName("allUpgradesLabel")
         self.verticalLayout_10.addWidget(self.allUpgradesLabel)
@@ -1298,6 +1306,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
         self.statisticsLabel.setText(_translate("BurgerClicker", "СТАТИСТИКА"))
         self.actualCountLabel.setText(_translate("BurgerClicker", f"Актуальное количество съеденных бургеров: {self.burger_count}"))
         self.allCountLabel.setText(_translate("BurgerClicker", f"Общее количество съеденных бургеров {self.allCount}"))
+        self.clickPowerLabel.setText(_translate("BurgerClicker", f"Сила клика: {self.click_power}"))
         self.allUpgradesLabel.setText(_translate("BurgerClicker", f"Общее количество улучшений: {self.allUpgrades}"))
         self.allMainUpgradesLabel.setText(_translate("BurgerClicker", f"Количество улучшений клика: {self.allMainUpgrades}"))
         self.gameSessionTimeLabel.setText(_translate("BurgerClicker", f"Время, проведенное в игре: {self.gameSessionTime}"))
@@ -1378,6 +1387,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
         self.gameSessionTime = round((time.time() - self.startTime))
         self.actualCountLabel.setText(f"Актуальное количество съеденных бургеров: {round(self.burger_count, 1)}")
         self.allCountLabel.setText(f"Общее количество съеденных бургеров {round(self.allCount,1 )}")
+        self.clickPowerLabel.setText(f"Сила клика: {round(self.click_power,1 )}")
         self.allUpgradesLabel.setText(f"Общее количество улучшений: {self.allUpgrades}")
         self.allMainUpgradesLabel.setText(f"Количество улучшений клика: {self.allMainUpgrades}")
         self.gameSessionTimeLabel.setText(f"Время, проведенное в игре: {self.gameSessionTime} сек.")
