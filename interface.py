@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
-
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from images.icons_rc import *
 from images.imgs_rc import *
 import time
+import webbrowser
+import ctypes
+myappid = 'mycompany.myproduct.subproduct.version' # arbitrary string
+ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 
-class Ui_BurgerClicker(object):
+class Ui_BurgerClicker(QtWidgets.QMainWindow):
 
     def __init__(self):
+        super().__init__()
         self.burger_count = 0.0
         self.helps_speed_count = 0
         self.click_power = 1
@@ -46,16 +48,16 @@ class Ui_BurgerClicker(object):
         self.help_buy_6 = 10000
         self.BurgerIcon = QtGui.QIcon()
         self.BurgerIcon.addPixmap(QtGui.QPixmap(f":/images/бургер{self.main_count_6}.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-
-
-
+        self.telegram_url = 'https://t.me/porkchoppppppp'
+        self.github_url = 'https://github.com/DanilPorkchop15'
 
     def setupUi(self, BurgerClicker):
-        BurgerClicker.setObjectName("BurgerClicker")
+        BurgerClicker.setWindowIcon(QtGui.QIcon('images/icons/free-icon-burger-5787014.png'))
         BurgerClicker.resize(1037, 780)
         BurgerClicker.setMinimumSize(QtCore.QSize(1037, 780))
         BurgerClicker.setMaximumSize(QtCore.QSize(1037, 780))
         BurgerClicker.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        BurgerClicker.setObjectName("BurgerClicker")
         BurgerClicker.setStyleSheet("QWidget{\n"
 "    background-color: #b1f0cc;\n"
 "}\n"
@@ -66,7 +68,7 @@ class Ui_BurgerClicker(object):
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    background-color:rgbe(255, 255, 255, 0);\n"
+"    background-color:rgba(255, 255, 255, 0);\n"
 "}\n"
 "\n"
 "#clickerFrame{\n"
@@ -1260,7 +1262,7 @@ class Ui_BurgerClicker(object):
 
     def retranslateUi(self, BurgerClicker):
         _translate = QtCore.QCoreApplication.translate
-        BurgerClicker.setWindowTitle(_translate("BurgerClicker", "MainWindow"))
+        BurgerClicker.setWindowTitle(_translate("BurgerClicker", "Burger Clicker"))
         self.upgradesButton.setText(_translate("BurgerClicker", "Улучшения"))
         self.helpsButton.setText(_translate("BurgerClicker", "Помощники"))
         self.mainUpgradeName.setText(_translate("BurgerClicker", f"Размер рта X {self.main_count_1}"))
@@ -1306,6 +1308,7 @@ class Ui_BurgerClicker(object):
         self.exitButton.setText(_translate("BurgerClicker", "ВЫЙТИ"))
 
     def actions(self, BurgerClicker):
+
         self.settingsMenuButton.clicked.connect(lambda: self.open_or_close_settings())
         self.returnButton.clicked.connect(lambda: self.open_or_close_settings())
         self.upgradesButton.clicked.connect(lambda: self.open_main_upgrades())
@@ -1326,6 +1329,9 @@ class Ui_BurgerClicker(object):
         self.helpUpgradeBuy_4.clicked.connect(lambda: self.help_upgrade_4())
         self.helpUpgradeBuy_5.clicked.connect(lambda: self.help_upgrade_5())
         self.helpUpgradeBuy_6.clicked.connect(lambda: self.help_upgrade_6())
+        
+        self.telegramButton.clicked.connect(lambda : webbrowser.open_new_tab(self.telegram_url))
+        self.githubButton.clicked.connect(lambda : webbrowser.open_new_tab(self.github_url))
 
     def open_or_close_settings(self):
         if self.settings.width() == 0:
@@ -1342,38 +1348,23 @@ class Ui_BurgerClicker(object):
         self.burger_count += self.click_power
         self.allCount += self.click_power
         self.update_count()
-
-        if self.burger_count <= 12000:
-            if self.burger_count >= 10:
-                self.mainUpgrade.setEnabled(True)
-            if self.burger_count >= 100:
-                self.mainUpgrade_2.setEnabled(True)
-            if self.burger_count >= 250:
-                self.mainUpgrade_3.setEnabled(True)
-            if self.burger_count >= 500:
-                self.mainUpgrade_4.setEnabled(True)
-            if self.burger_count >= 1000:
-                self.mainUpgrade_5.setEnabled(True)
-                self.mainUpgradeBuy_5.setEnabled(True)
-            if self.burger_count >= 100:
-                self.mainUpgrade_6.setEnabled(True)
-                self.mainUpgradeBuy_6.setEnabled(True)
-            if self.burger_count >= 100:
-               self.helpUpgrade.setEnabled(True)
-            if self.burger_count >= 500:
-                self.helpUpgrade_2.setEnabled(True)
-            if self.burger_count >= 1000:
-                self.helpUpgrade_3.setEnabled(True)
-            if self.burger_count >= 2500:
-                self.helpUpgrade_4.setEnabled(True)
-            if self.burger_count >= 5000:
-                self.helpUpgrade_5.setEnabled(True)
-            if self.burger_count >= 10000:
-                self.helpUpgrade_6.setEnabled(True)
-        if self.main_count_6 == 10:
-            self.mainUpgrade_6.setEnabled(False)
-            self.mainUpgradeBuy_6.setEnabled(False)
-
+        
+        upgrades = {
+                10: [self.mainUpgrade],
+                100: [self.mainUpgrade_2, self.mainUpgrade_6, self.mainUpgradeBuy_6, self.helpUpgrade],
+                250: [self.mainUpgrade_3],
+                500: [self.mainUpgrade_4, self.helpUpgrade_2],
+                1000: [self.mainUpgrade_5, self.mainUpgradeBuy_5, self.helpUpgrade_3],
+                2500: [self.helpUpgrade_4],
+                5000: [self.helpUpgrade_5],
+                10000: [self.helpUpgrade_6]
+        }
+        
+        for count, upgrades_list in upgrades.items():
+                for upgrade in upgrades_list:
+                        if self.burger_count >= count:
+                                upgrade.setEnabled(True)
+    
     def open_main_upgrades(self):
         if self.mainUpgradeFrame.width() == 0:
             self.mainUpgradeFrame.setMaximumWidth(21312312)
@@ -1472,8 +1463,7 @@ class Ui_BurgerClicker(object):
                 self.mainUpgradeBuy_6.setEnabled(False)
                 self.mainUpgradeName_6.setText(f"Уровень бургера (      MAX)")
                 self.mainUpgradeBuy_6.setText('^_____^')
-
-                
+        
 
 
 
