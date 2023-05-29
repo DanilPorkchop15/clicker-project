@@ -1461,7 +1461,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
             if self.main_count_6 == 10:
                 self.mainUpgrade_6.setEnabled(False)
                 self.mainUpgradeBuy_6.setEnabled(False)
-                self.mainUpgradeName_6.setText(f"Уровень бургера (      MAX)")
+                self.mainUpgradeName_6.setText(f"Уровень бургера (MAX)")
                 self.mainUpgradeBuy_6.setText('^_____^')
         
 
