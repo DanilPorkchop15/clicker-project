@@ -13,12 +13,11 @@ ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 
 class Ui_BurgerClicker(QtWidgets.QMainWindow):
-
     def __init__(self):
         super().__init__()
         self.burger_count = 0.0
         self.helps_speed_count = 0
-        self.click_power = 1
+        self.click_power = 100
         self.allCount = 0
         self.allUpgrades = 0
         self.allMainUpgrades = 0
@@ -49,6 +48,18 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
         self.help_buy_4 = 3000
         self.help_buy_5 = 10000
         self.help_buy_6 = 25000
+        self.burger_names_list = [
+                'Вонючий бургер',
+                'Гамбургер',
+                'Двойной чизбургер',
+                'Воппер',
+                'Двойной воппер',
+                'Тройной воппер',
+                'Элитный бургер',
+                'Мегамяс',
+                'Королевский бургер',
+                'Великий божественный бургер'
+        ]
         self.BurgerIcon = QtGui.QIcon()
         self.BurgerIcon.addPixmap(QtGui.QPixmap(f":/images/бургер{self.main_count_6}.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.telegram_url = 'https://t.me/porkchoppppppp'
@@ -1304,7 +1315,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
         self.helpUpgradeBuy_5.setText(_translate("BurgerClicker", f"{self.help_buy_5} бургеров"))
         self.helpUpgradeName_6.setText(_translate("BurgerClicker", f"Америкос X {self.help_count_6}"))
         self.helpUpgradeBuy_6.setText(_translate("BurgerClicker", f"{self.help_buy_6} бургеров"))
-        self.nameLabel.setText(_translate("BurgerClicker", "Вонючий бургер"))
+        self.nameLabel.setText(_translate("BurgerClicker", self.burger_names_list[0]))
         self.countLabel.setText(_translate("BurgerClicker", f"Съедено: {self.burger_count} бургеров"))
         self.helpCountLabel.setText(_translate("BurgerClicker", f"Помощь: {round(self.helps_speed_count, 1)}/сек"))
         self.settingsLabel.setText(_translate("BurgerClicker", "НАСТРОЙКИ"))
@@ -1489,6 +1500,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
             self.main_count_6 += 1
             if self.mute == 0: self.upgrade_sound.play()
             self.mainUpgradeName_6.setText(f"Уровень бургера (ур. {self.main_count_6})")
+            self.nameLabel.setText(self.burger_names_list[self.main_count_6-1])
             self.BurgerIcon = QtGui.QIcon()
             self.BurgerIcon.addPixmap(QtGui.QPixmap(f"images/imgs/бургер{self.main_count_6}.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.burgerButton.setIconSize(QtCore.QSize(450, 450))
