@@ -8,7 +8,6 @@ import webbrowser
 import threading
 import ctypes
 
-
 myappid = 'PorkchopInc.Burger_Clicker.Burger_Clicker.v1.0' # arbitrary string
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
