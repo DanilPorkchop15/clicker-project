@@ -17,7 +17,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
         super().__init__()
         self.burger_count = 0.0
         self.helps_speed_count = 0
-        self.click_power = 100
+        self.click_power = 1
         self.allCount = 0
         self.allUpgrades = 0
         self.allMainUpgrades = 0
