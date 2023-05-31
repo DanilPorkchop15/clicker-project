@@ -1364,3 +1364,4 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.burger_count += self.helps_speed_count
 		self.update_count()
 		threading.Timer(1.0, self.auto_click).start()
+
