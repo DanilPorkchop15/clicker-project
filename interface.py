@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
+import sys
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from images.icons_rc import *
 from images.imgs_rc import *
 import time
 from PyQt5.QtMultimedia import QSound
+import sqlite3 as sq
 import webbrowser
 import threading
+import statisticsBC
 import ctypes
+from random import randint
 
 myappid = 'PorkchopInc.Burger_Clicker.Burger_Clicker.v1.0'  # arbitrary string
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
@@ -15,39 +20,24 @@ ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 class Ui_BurgerClicker(QtWidgets.QMainWindow):
 	def __init__(self):
 		super().__init__()
-		self.burger_count = 0.0
-		self.helps_speed_count = 0
-		self.click_power = 1
-		self.allCount = 0
-		self.allUpgrades = 0
-		self.allMainUpgrades = 0
+		self.default_stats= (0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+			                    10, 100, 300, 1000, 2500, 200, 100, 500, 1000, 3000, 10000, 25000, 0)
+		self.stats = statisticsBC.stats
+		with open('statisticsBC.py', 'w+') as file:
+			file.write(f'stats = {self.default_stats}')
 		self.startTime = time.time()
-		self.gameSessionTime = 0
-		self.allHelpUpgrades = 0
-		self.main_count_1 = 0
-		self.main_count_2 = 0
-		self.main_count_3 = 0
-		self.main_count_4 = 0
-		self.main_count_5 = 0
-		self.main_count_6 = 1
-		self.help_count_1 = 0
-		self.help_count_2 = 0
-		self.help_count_3 = 0
-		self.help_count_4 = 0
-		self.help_count_5 = 0
-		self.help_count_6 = 0
-		self.main_buy_1 = 10
-		self.main_buy_2 = 100
-		self.main_buy_3 = 300
-		self.main_buy_4 = 1000
-		self.main_buy_5 = 2500
-		self.main_buy_6 = 200
-		self.help_buy_1 = 100
-		self.help_buy_2 = 500
-		self.help_buy_3 = 1000
-		self.help_buy_4 = 3000
-		self.help_buy_5 = 10000
-		self.help_buy_6 = 25000
+		self.gameSessionTime = self.stats[7]
+			
+		for i in range(1, 7):
+		    setattr(self, f"main_count_{i}", self.stats[8 + i])
+		    setattr(self, f"help_count_{i}", self.stats[14 + i])
+		    setattr(self, f"main_buy_{i}", round(self.stats[20 + i]))
+		    setattr(self, f"help_buy_{i}", round(self.stats[26 + i]))
+			
+		self.burger_count, self.helps_speed_count, self.click_power, \
+			self.allCount, self.allUpgrades, self.allMainUpgrades, self.allHelpUpgrades = self.stats[1:8]
+		self.mute = self.stats[33]
+
 		self.burger_names_list = [
 			'Вонючий бургер',
 			'Гамбургер',
@@ -68,7 +58,10 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.click_sound = QSound('sfx/click.wav', self)
 		self.upgrade_sound = QSound('sfx/upgrade.wav', self)
 		self.settings_sound = QSound('sfx/settings.wav', self)
-		self.mute = 0
+
+		self.shadow_effect = QtWidgets.QGraphicsDropShadowEffect()
+		self.shadow_effect.setBlurRadius(70)
+		self.shadow_effect.setOffset(0, 10)
 	
 	def setupUi(self, BurgerClicker):
 		BurgerClicker.setWindowIcon(QtGui.QIcon('images/icons/free-icon-burger-5787014.png'))
@@ -880,6 +873,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.verticalLayout_3.addWidget(self.nameLabel)
 		self.burgerButton = QtWidgets.QPushButton(self.clickerFrame)
 		self.burgerButton.setEnabled(True)
+		self.burgerButton.setGraphicsEffect(self.shadow_effect)
 		sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
 		sizePolicy.setHorizontalStretch(0)
 		sizePolicy.setVerticalStretch(0)
@@ -1066,15 +1060,15 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.frame_4.setObjectName("frame_4")
 		self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.frame_4)
 		self.verticalLayout_13.setObjectName("verticalLayout_13")
-		self.exitButton = QtWidgets.QPushButton(self.frame_4)
-		self.exitButton.setMinimumSize(QtCore.QSize(150, 60))
+		self.saveAndExitButton = QtWidgets.QPushButton(self.frame_4)
+		self.saveAndExitButton.setMinimumSize(QtCore.QSize(150, 60))
 		icon21 = QtGui.QIcon()
 		icon21.addPixmap(QtGui.QPixmap(":/icons/icons8-close-window-64.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-		self.exitButton.setIcon(icon21)
-		self.exitButton.setIconSize(QtCore.QSize(35, 35))
-		self.exitButton.setObjectName("exitButton")
-		self.exitButton.setStyleSheet('padding: 0 10px;')
-		self.verticalLayout_13.addWidget(self.exitButton, 0, QtCore.Qt.AlignTop)
+		self.saveAndExitButton.setIcon(icon21)
+		self.saveAndExitButton.setIconSize(QtCore.QSize(35, 35))
+		self.saveAndExitButton.setObjectName("saveButton")
+		self.saveAndExitButton.setStyleSheet('padding: 0 10px;')
+		self.verticalLayout_13.addWidget(self.saveAndExitButton, 0, QtCore.Qt.AlignTop)
 		self.verticalLayout_14.addWidget(self.frame_4, 0, QtCore.Qt.AlignHCenter)
 		self.verticalLayout_7.addWidget(self.settingsWrapper, 0, QtCore.Qt.AlignHCenter)
 		self.retranslateUi(BurgerClicker)
@@ -1082,6 +1076,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		BurgerClicker.setCentralWidget(self.centralwidget)
 		QtCore.QMetaObject.connectSlotsByName(BurgerClicker)
 		
+		self.check_disabled_objects()
 		self.actions(BurgerClicker)
 	
 	def retranslateUi(self, BurgerClicker):
@@ -1113,7 +1108,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.helpUpgradeBuy_5.setText(_translate("BurgerClicker", f"{self.help_buy_5} бургеров"))
 		self.helpUpgradeName_6.setText(_translate("BurgerClicker", f"Америкос X {self.help_count_6}"))
 		self.helpUpgradeBuy_6.setText(_translate("BurgerClicker", f"{self.help_buy_6} бургеров"))
-		self.nameLabel.setText(_translate("BurgerClicker", self.burger_names_list[0]))
+		self.nameLabel.setText(_translate("BurgerClicker", self.burger_names_list[self.main_count_6-1]))
 		self.countLabel.setText(_translate("BurgerClicker", f"Съедено: {self.burger_count} бургеров"))
 		self.helpCountLabel.setText(_translate("BurgerClicker", f"Помощь: {round(self.helps_speed_count, 1)}/сек"))
 		self.settingsLabel.setText(_translate("BurgerClicker", "НАСТРОЙКИ"))
@@ -1128,7 +1123,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.allMainUpgradesLabel.setText(
 			_translate("BurgerClicker", f"Количество улучшений клика: {self.allMainUpgrades}"))
 		self.gameSessionTimeLabel.setText(
-			_translate("BurgerClicker", f"Время, проведенное в игре: {self.gameSessionTime}"))
+			_translate("BurgerClicker", f"Время, проведенное в игре с запуска: {self.gameSessionTime}"))
 		self.allHelpUpgradesLabel.setText(
 			_translate("BurgerClicker", f"Количество улучшений помощников: {self.allHelpUpgrades}"))
 		self.statisticsToolBox.setItemText(self.statisticsToolBox.indexOf(self.page),
@@ -1136,9 +1131,9 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.statisticsToolBox.setItemText(self.statisticsToolBox.indexOf(self.page_2),
 		                                   _translate("BurgerClicker", "ЗАКРЫТЬ СТАТИСТИКУ"))
 		self.returnButton.setText(_translate("BurgerClicker", "ВЕРНУТЬСЯ"))
-		self.exitButton.setText(_translate("BurgerClicker", "СОХРАНИТЬ И ВЫЙТИ"))
+		self.saveAndExitButton.setText(_translate("BurgerClicker", "СОХРАНИТЬ И ВЫЙТИ"))
 	
-	def actions(self, BurgerClicker):
+	def actions(self, app):
 		
 		thread = threading.Thread(target=self.auto_click)
 		thread.start()
@@ -1149,7 +1144,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.settingsMenuButton.clicked.connect(lambda: self.open_or_close_settings())
 		self.muteButton.clicked.connect(lambda: self.mute_or_unmute())
 		self.returnButton.clicked.connect(lambda: self.open_or_close_settings())
-		self.exitButton.clicked.connect(lambda: BurgerClicker.close())
+		self.saveAndExitButton.clicked.connect(lambda: self.save_exit(app))
 		self.telegramButton.clicked.connect(lambda: self.open_social(self.telegram_url))
 		self.githubButton.clicked.connect(lambda: self.open_social(self.github_url))
 		
@@ -1198,27 +1193,37 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 	def onclick(self):
 		self.burger_count += self.click_power
 		self.allCount += self.click_power
+		self.check_disabled_objects()
 		self.update_count()
 		if self.mute == 0: self.click_sound.play()
+		self.shadow_effect.setColor(QtGui.QColor(randint(0,255), randint(0,255), randint(0,255)))
+		self.burgerButton.setGraphicsEffect(self.shadow_effect)
 		
-		upgrades = {
-			10: [self.mainUpgrade],
-			100: [self.mainUpgrade_2, self.helpUpgrade],
-			300: [self.mainUpgrade_3],
-			1000: [self.mainUpgrade_4, self.helpUpgrade_3],
-			2500: [self.mainUpgrade_5],
-			200: [self.mainUpgrade_6],
-			500: [self.helpUpgrade_2],
-			3000: [self.helpUpgrade_4],
-			10000: [self.helpUpgrade_5],
-			25000: [self.helpUpgrade_6]
+	def check_disabled_objects(self):
+		main_upgrades = {
+			self.main_buy_1: self.mainUpgrade,
+			self.main_buy_2: self.mainUpgrade_2,
+			self.main_buy_3: self.mainUpgrade_3,
+			self.main_buy_4: self.mainUpgrade_4,
+			self.main_buy_5: self.mainUpgrade_5,
+			self.main_buy_6: self.mainUpgrade_6
 		}
 		
-		for count, upgrades_list in upgrades.items():
-			for upgrade in upgrades_list:
-				if self.burger_count >= count:
-					upgrade.setEnabled(True)
+		help_upgrades = {
+			self.help_buy_1: self.helpUpgrade,
+			self.help_buy_2: self.helpUpgrade_2,
+			self.help_buy_3: self.helpUpgrade_3,
+			self.help_buy_4: self.helpUpgrade_4,
+			self.help_buy_5: self.helpUpgrade_5,
+			self.help_buy_6: self.helpUpgrade_6
+		}
 		
+		for count, upgrade in main_upgrades.items():
+			upgrade.setEnabled(self.burger_count >= count)
+		
+		for count, upgrade in help_upgrades.items():
+			upgrade.setEnabled(self.burger_count >= count)
+
 		self.max_burger()
 	
 	def max_burger(self):
@@ -1251,45 +1256,49 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.allHelpUpgradesLabel.setText(f"Количество улучшений помощников: {self.allHelpUpgrades}")
 	
 	def main_upgrade(self, buy_amount, count_variable, name_label, buy_label, power, name):
-		if self.burger_count >= buy_amount:
-			self.burger_count -= buy_amount
-			self.allUpgrades += 1
-			self.allMainUpgrades += 1
-			self.click_power += power * self.main_count_6
-			if self.mute == 0: self.upgrade_sound.play()
-			name_label.setText(f"{name} X {count_variable + 1}")
-			buy_label.setText(f'{round(buy_amount * 1.2)} бургеров')
-			self.update_count()
+		self.burger_count -= buy_amount
+		self.allUpgrades += 1
+		self.allMainUpgrades += 1
+		self.click_power += power * self.main_count_6
+		if self.mute == 0: self.upgrade_sound.play()
+		name_label.setText(f"{name} X {count_variable + 1}")
+		buy_label.setText(f'{round(buy_amount * 1.2)} бургеров')
+		self.update_count()
 	
 	def main_upgrade_1(self):
 		self.main_upgrade(self.main_buy_1, self.main_count_1, self.mainUpgradeName,
 		                  self.mainUpgradeBuy, 0.2, 'Размер рта')
 		self.main_buy_1 *= 1.2
 		self.main_count_1 += 1
+		self.check_disabled_objects()
 	
 	def main_upgrade_2(self):
 		self.main_upgrade(self.main_buy_2, self.main_count_2, self.mainUpgradeName_2,
 		                  self.mainUpgradeBuy_2, 0.5, 'Мощность челюсти')
 		self.main_buy_2 *= 1.2
 		self.main_count_2 += 1
+		self.check_disabled_objects()
 	
 	def main_upgrade_3(self):
 		self.main_upgrade(self.main_buy_3, self.main_count_3, self.mainUpgradeName_3,
 		                  self.mainUpgradeBuy_3, 1, 'Объем желудка')
 		self.main_buy_3 *= 1.2
 		self.main_count_3 += 1
+		self.check_disabled_objects()
 	
 	def main_upgrade_4(self):
 		self.main_upgrade(self.main_buy_4, self.main_count_4, self.mainUpgradeName_4,
 		                  self.mainUpgradeBuy_4, 3, 'Сила кишки')
 		self.main_buy_4 *= 1.2
 		self.main_count_4 += 1
+		self.check_disabled_objects()
 	
 	def main_upgrade_5(self):
 		self.main_upgrade(self.main_buy_5, self.main_count_5, self.mainUpgradeName_5,
 		                  self.mainUpgradeBuy_5, 10, 'Аппетит')
 		self.main_buy_5 *= 1.2
 		self.main_count_5 += 1
+		self.check_disabled_objects()
 	
 	def main_upgrade_6(self):
 		if self.burger_count >= self.main_buy_6:
@@ -1312,6 +1321,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 			self.update_count()
 			
 			self.max_burger()
+			self.check_disabled_objects()
 	
 	def help_upgrade(self, buy_amount, count_variable, name_label, buy_label, power, name):
 		if self.burger_count >= buy_amount:
@@ -1329,36 +1339,58 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		                  self.helpUpgradeBuy, 0.5, 'Капризный ребенок')
 		self.help_buy_1 *= 1.2
 		self.help_count_1 += 1
+		self.check_disabled_objects()
 	
 	def help_upgrade_2(self):
 		self.help_upgrade(self.help_buy_2, self.help_count_2, self.helpUpgradeName_2,
 		                  self.helpUpgradeBuy_2, 2, 'Бедный студент')
 		self.help_buy_2 *= 1.2
 		self.help_count_2 += 1
+		self.check_disabled_objects()
 	
 	def help_upgrade_3(self):
 		self.help_upgrade(self.help_buy_3, self.help_count_3, self.helpUpgradeName_3,
 		                  self.helpUpgradeBuy_3, 5, 'Уставший работяга')
 		self.help_buy_3 *= 1.2
 		self.help_count_3 += 1
+		self.check_disabled_objects()
 	
 	def help_upgrade_4(self):
 		self.help_upgrade(self.help_buy_4, self.help_count_4, self.helpUpgradeName_4,
 		                  self.helpUpgradeBuy_4, 15, 'Любитель поесть')
 		self.help_buy_4 *= 1.2
 		self.help_count_4 += 1
+		self.check_disabled_objects()
 	
 	def help_upgrade_5(self):
 		self.help_upgrade(self.help_buy_5, self.help_count_5, self.helpUpgradeName_5,
 		                  self.helpUpgradeBuy_5, 50, 'Голодный толстяк')
 		self.help_buy_5 *= 1.2
 		self.help_count_5 += 1
+		self.check_disabled_objects()
 	
 	def help_upgrade_6(self):
 		self.help_upgrade(self.help_buy_6, self.help_count_6, self.helpUpgradeName_6,
 		                  self.helpUpgradeBuy_6, 250, 'Америкос')
 		self.help_buy_6 *= 1.2
 		self.help_count_6 += 1
+		self.check_disabled_objects()
+		
+	def save_exit(self, app):
+
+		self.stats = (0, self.burger_count, self.helps_speed_count, self.click_power, self.allCount,
+				self.allUpgrades, self.allMainUpgrades, self.gameSessionTime, self.allHelpUpgrades,
+				self.main_count_1, self.main_count_2, self.main_count_3, self.main_count_4,
+				self.main_count_5, self.main_count_6, self.help_count_1, self.help_count_2,
+				self.help_count_3, self.help_count_4, self.help_count_5, self.help_count_6,
+			    self.main_buy_1, self.main_buy_2, self.main_buy_3, self.main_buy_4, self.main_buy_5,
+			    self.main_buy_6, self.help_buy_1, self.help_buy_2, self.help_buy_3, self.help_buy_4,
+			    self.help_buy_5, self.help_buy_6, self.mute)
+		with open('statisticsBC.py', 'w+') as file:
+			file.writelines(f'stats = {self.stats}')
+		app.close()
+		self.quit()
+		
 	
 	def auto_click(self):
 		self.burger_count += self.helps_speed_count
