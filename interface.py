@@ -21,7 +21,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 	def __init__(self):
 		super().__init__()
 		self.default_stats= (0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-			                    10, 100, 300, 1000, 2500, 200, 100, 500, 1000, 3000, 10000, 25000, 0)
+			                    10, 100, 300, 1000, 2500, 200, 100, 500, 1000, 3000, 10000, 25000, False)
 		self.stats = statisticsBC.stats
 		with open('statisticsBC.py', 'w+') as file:
 			file.write(f'stats = {self.default_stats}')
@@ -37,6 +37,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.burger_count, self.helps_speed_count, self.click_power, \
 			self.allCount, self.allUpgrades, self.allMainUpgrades, self.allHelpUpgrades = self.stats[1:8]
 		self.mute = self.stats[33]
+		self.iconMute = QtGui.QIcon()
 
 		self.burger_names_list = [
 			'Вонючий бургер',
@@ -1168,23 +1169,24 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		else:
 			self.settings.setFixedWidth(0)
 		self.upgrade_stats()
-		if self.mute == 0: self.settings_sound.play()
+		if not self.mute: self.settings_sound.play()
 	
 	def mute_or_unmute(self):
-		iconMute = QtGui.QIcon()
-		if self.mute == 0:
-			self.mute = 1
-			iconMute.addPixmap(QtGui.QPixmap(":/icons/icons8-volume-100.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-			self.muteButton.setText("Включить")
-		else:
-			self.mute = 0
-			iconMute.addPixmap(QtGui.QPixmap(":/icons/icons8-mute-100.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+		if  self.mute:
+			self.mute = False
+			self.iconMute.addPixmap(QtGui.QPixmap(":/icons/icons8-mute-100.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 			self.muteButton.setText("Выключить")
-		self.muteButton.setIcon(iconMute)
+		else:
+			self.mute = True
+			self.iconMute.addPixmap(QtGui.QPixmap(":/icons/icons8-volume-100.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+			self.muteButton.setText("Включить")
+		self.muteButton.setIcon(self.iconMute)
+		if not self.mute: self.settings_sound.play()
+		
 	
 	def open_social(self, url):
 		webbrowser.open_new_tab(url)
-		if self.mute == 0: self.settings_sound.play()
+		if not self.mute: self.settings_sound.play()
 	
 	def update_count(self):
 		self.countLabel.setText(f"Съедено: {round(self.burger_count, 1)} бургеров")
@@ -1195,7 +1197,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.allCount += self.click_power
 		self.check_disabled_objects()
 		self.update_count()
-		if self.mute == 0: self.click_sound.play()
+		if not self.mute: self.click_sound.play()
 		self.shadow_effect.setColor(QtGui.QColor(randint(0,255), randint(0,255), randint(0,255)))
 		self.burgerButton.setGraphicsEffect(self.shadow_effect)
 		
@@ -1237,13 +1239,13 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		if self.mainUpgradeFrame.width() == 0:
 			self.mainUpgradeFrame.setMaximumWidth(21312312)
 			self.helpUpgradeFrame.setMaximumWidth(0)
-		if self.mute == 0: self.settings_sound.play()
+		if not self.mute: self.settings_sound.play()
 	
 	def open_help_upgrades(self):
 		if self.helpUpgradeFrame.width() == 0:
 			self.helpUpgradeFrame.setMaximumWidth(21312312)
 			self.mainUpgradeFrame.setMaximumWidth(0)
-		if self.mute == 0: self.settings_sound.play()
+		if not self.mute: self.settings_sound.play()
 	
 	def upgrade_stats(self):
 		self.gameSessionTime = round((time.time() - self.startTime))
@@ -1260,7 +1262,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 		self.allUpgrades += 1
 		self.allMainUpgrades += 1
 		self.click_power += power * self.main_count_6
-		if self.mute == 0: self.upgrade_sound.play()
+		if not self.mute: self.upgrade_sound.play()
 		name_label.setText(f"{name} X {count_variable + 1}")
 		buy_label.setText(f'{round(buy_amount * 1.2)} бургеров')
 		self.update_count()
@@ -1309,7 +1311,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 			self.click_power *= 1.5
 			self.helps_speed_count *= 1.5
 			self.main_count_6 += 1
-			if self.mute == 0: self.upgrade_sound.play()
+			if not self.mute: self.upgrade_sound.play()
 			self.mainUpgradeName_6.setText(f"Уровень бургера (ур. {self.main_count_6})")
 			self.nameLabel.setText(self.burger_names_list[self.main_count_6 - 1])
 			self.BurgerIcon = QtGui.QIcon()
@@ -1329,7 +1331,7 @@ class Ui_BurgerClicker(QtWidgets.QMainWindow):
 			self.allUpgrades += 1
 			self.allHelpUpgrades += 1
 			self.helps_speed_count += power * self.main_count_6
-			if self.mute == 0: self.upgrade_sound.play()
+			if not self.mute: self.upgrade_sound.play()
 			name_label.setText(f"{name} X {count_variable + 1}")
 			buy_label.setText(f'{round(buy_amount * 1.2)} бургеров')
 			self.update_count()
