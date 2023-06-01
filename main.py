@@ -5,6 +5,7 @@ import sys
 
 
 if __name__ == "__main__":
+	
 	app = QtWidgets.QApplication(sys.argv)
 	window = Ui_BurgerClickerEvents()
 	sys.exit(app.exec_())

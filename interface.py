@@ -858,7 +858,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 		self.burgerButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 		self.burgerButton.setAutoFillBackground(False)
 		icon16 = QtGui.QIcon()
-		icon16.addPixmap(QtGui.QPixmap(f":/images/бургер{self.stats[13]}.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+		icon16.addPixmap(QtGui.QPixmap(f"/images/imgs/бургер{self.stats[13]}.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 		self.burgerButton.setIcon(self.BurgerIcon)
 		self.burgerButton.setIconSize(QtCore.QSize(450, 450))
 		self.burgerButton.setFlat(True)

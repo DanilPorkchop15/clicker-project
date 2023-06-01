@@ -1,17 +1,18 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from interface import Ui_MainWindow
 import webbrowser
-import threading
 from random import randint
 import time
-from PyQt5.QtMultimedia import QSound
+from PyQt5.QtMultimedia import QSound, QMediaPlayer, QMediaPlaylist, QMediaContent
 import statisticsBC
+import numpy as np
 
 class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 	def __init__(self):
 		QtWidgets.QMainWindow.__init__(self)
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
+		
 		self.default_stats = (0, 0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
 		                      10, 100, 300, 1000, 2500, 200, 100, 500, 1000, 3000, 10000, 25000, False)
 		self.stats = statisticsBC.stats
@@ -28,6 +29,9 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 			self.upgrade_count_list[1].append(self.stats[14 + i])
 			self.upgrade_buy_list[0].append(round(self.stats[20 + i]))
 			self.upgrade_buy_list[1].append(round(self.stats[26 + i]))
+			
+		self.upgrade_count_list = np.array(self.upgrade_count_list)
+		self.upgrade_buy_list = np.array(self.upgrade_buy_list)
 		
 		self.burger_count, self.helps_speed_count, self.click_power, \
 			self.allCount, self.allUpgrades, self.allMainUpgrades, self.allHelpUpgrades = self.stats[0:7]
@@ -45,15 +49,34 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		self.shadow_effect.setBlurRadius(70)
 		self.shadow_effect.setOffset(0, 10)
 		
+		self.player = QMediaPlayer()
+		
+
+		self.playlist = QMediaPlaylist()
+		media = QMediaContent(QtCore.QUrl.fromLocalFile("sfx/ambience.wav"))
+		self.playlist.addMedia(media)
+		self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
+		self.player.setPlaylist(self.playlist)
+		self.player.setVolume(8)
+		self.player.play()
+		if self.mute:
+			self.player.setMuted(True)
+		
+		self.timer = QtCore.QTimer()
+		
 		self.events()
+		def move_window(event):
+			if event.button() == QtCore.Qt.LeftButton:
+				self.move(self.pos() + event.globalPos() - self.clickPosition)
+				self.clickPosition = event.globalPos()
+				event.accept()
+				
+		self.ui.statisticsFrame.mouseMoveEvent = move_window
 		
 		self.show()
 		
 	def events(self):
 		self.check_disabled_objects()
-		
-		self.thread = threading.Thread(target=self.auto_click)
-		self.thread.start()
 		
 		self.ui.burgerButton.clicked.connect(lambda: self.onclick())
 		self.ui.upgradesButton.clicked.connect(lambda: self.open_main_upgrades())
@@ -65,6 +88,9 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		self.ui.telegramButton.clicked.connect(lambda: self.open_social(self.telegram_url))
 		self.ui.githubButton.clicked.connect(lambda: self.open_social(self.github_url))
 		
+		self.timer.timeout.connect(self.auto_click)
+		self.timer.start(1000)
+		
 		self.ui.mainUpgradeBuy.clicked.connect(lambda: self.upgrade(0, 0, self.upgrade_buy_list[0][0],
 		                                                            self.upgrade_count_list[0][0],
 		                                                            self.ui.mainUpgradeName,
@@ -74,7 +100,7 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		                                                              self.upgrade_count_list[0][1],
 		                                                              self.ui.mainUpgradeName_2,
 		                                                              self.ui.mainUpgradeBuy_2,
-		                                                              0.5, 'Объем желудка'))
+		                                                              0.5, 'Мощность челюсти'))
 		self.ui.mainUpgradeBuy_3.clicked.connect(lambda: self.upgrade(0, 2, self.upgrade_buy_list[0][2],
 		                                                              self.upgrade_count_list[0][2],
 		                                                              self.ui.mainUpgradeName_3,
@@ -87,9 +113,9 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		                                                              3, 'Сила кишки'))
 		self.ui.mainUpgradeBuy_5.clicked.connect(lambda: self.upgrade(0, 4, self.upgrade_buy_list[0][4],
 		                                                              self.upgrade_count_list[0][4],
-		                                                              self.ui.mainUpgradeName_3,
-		                                                              self.ui.mainUpgradeBuy_3,
-		                                                              10, 'Объем желудка'))
+		                                                              self.ui.mainUpgradeName_5,
+		                                                              self.ui.mainUpgradeBuy_5,
+		                                                              10, 'Аппетит'))
 		self.ui.mainUpgradeBuy_6.clicked.connect(lambda: self.main_upgrade_6())
 		
 		self.ui.helpUpgradeBuy.clicked.connect(lambda: self.upgrade(1, 0, self.upgrade_buy_list[1][0],
@@ -122,6 +148,10 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		                                                              self.ui.helpUpgradeName_6,
 		                                                              self.ui.helpUpgradeBuy_6,
 		                                                              250, 'Америкос'))
+		
+	def mousePressEvent(self, event) :
+		self.clickPosition = event.globalPos()
+	
 	def open_or_close_settings(self):
 		if self.ui.settings.width() == 0:
 			self.ui.settings.setFixedWidth(1037)
@@ -133,10 +163,12 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 	def mute_or_unmute(self):
 		if self.mute:
 			self.mute = False
+			self.player.setMuted(False)
 			self.ui.iconMute.addPixmap(QtGui.QPixmap(":/icons/icons8-mute-100.png"))
 			self.ui.muteButton.setText("ВЫКЛЮЧИТЬ")
 		else:
 			self.mute = True
+			self.player.setMuted(True)
 			self.ui.iconMute.addPixmap(QtGui.QPixmap(":/icons/icons8-volume-100.png"))
 			self.ui.muteButton.setText("ВКЛЮЧИТЬ")
 		self.ui.muteButton.setIcon(self.ui.iconMute)
@@ -154,7 +186,7 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		self.burger_count += self.click_power
 		self.allCount += self.click_power
 		self.check_disabled_objects()
-		self.update_count()
+		self.ui.countLabel.setText(f"Съедено: {round(self.burger_count, 1)} бургеров")
 		if not self.mute: self.click_sound.play()
 		self.shadow_effect.setColor(QtGui.QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
 		self.ui.burgerButton.setGraphicsEffect(self.shadow_effect)
@@ -264,7 +296,7 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		
 	def save_exit(self):
 		self.ui.stats = (
-			round(self.burger_count), round(self.helps_speed_count), round(self.click_power, 1), round(self.allCount),
+			round(self.burger_count, 1), round(self.helps_speed_count, 1), round(self.click_power, 1), round(self.allCount),
 			self.allUpgrades, self.allMainUpgrades, self.gameSessionTime, self.allHelpUpgrades,
 			self.upgrade_count_list[0][0], self.upgrade_count_list[0][1], self.upgrade_count_list[0][2],
 			self.upgrade_count_list[0][3], self.upgrade_count_list[0][4], self.upgrade_count_list[0][5],
@@ -279,10 +311,12 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		with open('statisticsBC.py', 'w+') as file:
 			file.writelines(f'stats = {self.ui.stats}')
 		self.close()
-		self.thread.run()
+	
+	def closeEvent(self, event):
+		self.timer.stop()
 		
 	def auto_click(self):
 		self.burger_count += self.helps_speed_count
 		self.update_count()
-		threading.Timer(1.0, self.auto_click).start()
-		
+		self.check_disabled_objects()
+	
