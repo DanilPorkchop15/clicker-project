@@ -12,8 +12,7 @@ ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 
 class Ui_MainWindow(QtWidgets.QMainWindow):
-	def __init__(self):
-		super().__init__()
+	def setupUi(self, BurgerClicker):
 		self.stats = statisticsBC.stats
 
 		self.burger_names_list = [
@@ -29,13 +28,15 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 			'Великий божественный бургер'
 		]
 		self.BurgerIcon = QtGui.QIcon()
+
+		self.iconMute = QtGui.QIcon()
+		
 		self.BurgerIcon.addPixmap(QtGui.QPixmap(f":/images/бургер{self.stats[13]}.png"), QtGui.QIcon.Normal,
 		                          QtGui.QIcon.Off)
 		self.shadow_effect = QtWidgets.QGraphicsDropShadowEffect()
 		self.shadow_effect.setBlurRadius(70)
 		self.shadow_effect.setOffset(0, 10)
-	
-	def setupUi(self, BurgerClicker):
+		
 		BurgerClicker.setWindowIcon(QtGui.QIcon('images/icons/free-icon-burger-5787014.png'))
 		BurgerClicker.resize(1037, 780)
 		BurgerClicker.setMinimumSize(QtCore.QSize(1037, 780))
@@ -945,9 +946,13 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 		self.verticalLayout_9.addWidget(self.volumeLabel, 0, QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom)
 		self.muteButton = QtWidgets.QPushButton(self.frame_3)
 		self.muteButton.setMinimumSize(QtCore.QSize(150, 60))
-		icon17 = QtGui.QIcon()
-		icon17.addPixmap(QtGui.QPixmap(":/icons/icons8-mute-100.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-		self.muteButton.setIcon(icon17)
+		if not self.stats[32]:
+			self.iconMute.addPixmap(QtGui.QPixmap(":/icons/icons8-mute-100.png"))
+			self.muteButton.setText("ВЫКЛЮЧИТЬ")
+		else:
+			self.iconMute.addPixmap(QtGui.QPixmap(":/icons/icons8-volume-100.png"))
+			self.muteButton.setText("ВКЛЮЧИТЬ")
+		self.muteButton.setIcon(self.iconMute)
 		self.muteButton.setIconSize(QtCore.QSize(35, 35))
 		self.muteButton.setObjectName("pushButton")
 		self.verticalLayout_9.addWidget(self.muteButton, 0, QtCore.Qt.AlignHCenter)
@@ -1080,7 +1085,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 		self.helpCountLabel.setText(_translate("BurgerClicker", f"Помощь: {self.stats[1]}/сек"))
 		self.settingsLabel.setText(_translate("BurgerClicker", "НАСТРОЙКИ"))
 		self.volumeLabel.setText(_translate("BurgerClicker", "ЗВУК"))
-		self.muteButton.setText(_translate("BurgerClicker", "ВЫКЛЮЧИТЬ"))
 		self.statisticsLabel.setText(_translate("BurgerClicker", "СТАТИСТИКА"))
 		self.actualCountLabel.setText(
 			_translate("BurgerClicker", f"Актуальное количество съеденных бургеров: {self.stats[0]}"))
