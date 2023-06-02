@@ -28,7 +28,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
 		self.iconMute = QtGui.QIcon()
 		
-		self.BurgerIcon.addPixmap(QtGui.QPixmap(f"images/imgs/бургер{self.stats[13]}.png"), QtGui.QIcon.Normal,
+		self.BurgerIcon.addPixmap(QtGui.QPixmap(f"src/images/imgs/бургер{self.stats[13]}.png"), QtGui.QIcon.Normal,
 		                          QtGui.QIcon.Off)
 		self.shadow_effect = QtWidgets.QGraphicsDropShadowEffect()
 		self.shadow_effect.setBlurRadius(70)
@@ -769,7 +769,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 		self.settingsMenuButton.setMinimumSize(QtCore.QSize(50, 50))
 		self.settingsMenuButton.setMaximumSize(QtCore.QSize(50, 50))
 		icon15 = QtGui.QIcon()
-		icon15.addPixmap(QtGui.QPixmap("images/icons/icons8-settings-40.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+		icon15.addPixmap(QtGui.QPixmap("src/images/icons/icons8-settings-40.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 		self.settingsMenuButton.setIcon(icon15)
 		self.settingsMenuButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 		self.settingsMenuButton.setIconSize(QtCore.QSize(30, 30))
