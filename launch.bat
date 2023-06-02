@@ -1,13 +1,12 @@
-@echo on
+@echo off
 
-pip install virtualenv
+IF EXIST venv\Scripts\activate.bat (
+	echo "venv exist"
+) ELSE (
+	python -m venv venv
+	pip install -r requirements.txt
+)
 
-virtualenv Venv
 
-python Venv\Scripts\activate
 
-pip install -r requirements.txt
-
-start main.py
-
-exit
+python src/main.py
