@@ -165,12 +165,12 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		if self.mute:
 			self.mute = False
 			self.player.setMuted(False)
-			self.ui.iconMute.addPixmap(QtGui.QPixmap("src/icons/icons/icons8-mute-100.png"))
+			self.ui.iconMute.addPixmap(QtGui.QPixmap("src/images/icons/icons8-mute-100.png"))
 			self.ui.muteButton.setText("ВЫКЛЮЧИТЬ")
 		else:
 			self.mute = True
 			self.player.setMuted(True)
-			self.ui.iconMute.addPixmap(QtGui.QPixmap("src/icons/icons/icons8-volume-100.png"))
+			self.ui.iconMute.addPixmap(QtGui.QPixmap("src/images/icons/icons8-volume-100.png"))
 			self.ui.muteButton.setText("ВКЛЮЧИТЬ")
 		self.ui.muteButton.setIcon(self.ui.iconMute)
 		if not self.mute: self.settings_sound.play()
