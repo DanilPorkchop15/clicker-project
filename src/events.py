@@ -5,6 +5,7 @@ from random import randint
 import time
 from PyQt5.QtMultimedia import QSound, QMediaPlayer, QMediaPlaylist, QMediaContent
 import statisticsBC
+import sys
 import numpy as np
 
 class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
@@ -16,7 +17,7 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		self.default_stats = (0, 0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
 		                      10, 100, 300, 1000, 2500, 200, 100, 500, 1000, 3000, 10000, 25000, False)
 		self.stats = statisticsBC.stats
-		with open('statisticsBC.py', 'w+') as file:
+		with open('./statisticsBC.py', 'w+') as file:
 			file.write(f'stats = {self.default_stats}')
 		self.startTime = time.time()
 		self.gameSessionTime = self.stats[6]
@@ -36,14 +37,15 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		self.burger_count, self.helps_speed_count, self.click_power, \
 			self.allCount, self.allUpgrades, self.allMainUpgrades, self.allHelpUpgrades = self.stats[0:7]
 		self.mute = self.stats[32]
+		self.__give_mode()
 		
 		self.BurgerIcon = QtGui.QIcon()
-		self.BurgerIcon.addPixmap(QtGui.QPixmap(f":/images/бургер{self.stats[13]}.png"))
+		self.BurgerIcon.addPixmap(QtGui.QPixmap(f"images/imgs/бургер{self.stats[13]}.png"))
 		self.telegram_url = 'https://t.me/porkchoppppppp'
 		self.github_url = 'https://github.com/DanilPorkchop15'
-		self.click_sound = QSound('sfx/click.wav', self)
-		self.upgrade_sound = QSound('sfx/upgrade.wav', self)
-		self.settings_sound = QSound('sfx/settings.wav', self)
+		self.click_sound = QSound('sfx\\click.wav', self)
+		self.upgrade_sound = QSound('sfx\\upgrade.wav', self)
+		self.settings_sound = QSound('sfx\\settings.wav', self)
 		
 		self.shadow_effect = QtWidgets.QGraphicsDropShadowEffect()
 		self.shadow_effect.setBlurRadius(70)
@@ -308,7 +310,7 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 			round(self.upgrade_buy_list[1][3]), round(self.upgrade_buy_list[1][4]), round(self.upgrade_buy_list[1][5]),
 			self.mute
 		)
-		with open('statisticsBC.py', 'w+') as file:
+		with open('./statisticsBC.py', 'w+') as file:
 			file.writelines(f'stats = {self.ui.stats}')
 		self.close()
 	
@@ -320,3 +322,14 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		self.update_count()
 		self.check_disabled_objects()
 	
+	def __give_mode(self):
+		if "dev" in sys.argv:
+			print("Launch DevBuild")
+			self.burger_count = 9999999999999999
+		
+		if "release" in sys.argv:
+			print("Launch Release")
+		
+		else:
+			raise Exception("Launch mode error. Set launch mode in launch.bar (set launch_mode=release)")
+

@@ -28,7 +28,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
 		self.iconMute = QtGui.QIcon()
 		
-		self.BurgerIcon.addPixmap(QtGui.QPixmap(f"images/imga/бургер{self.stats[13]}.png"), QtGui.QIcon.Normal,
+		self.BurgerIcon.addPixmap(QtGui.QPixmap(f"images/imgs/бургер{self.stats[13]}.png"), QtGui.QIcon.Normal,
 		                          QtGui.QIcon.Off)
 		self.shadow_effect = QtWidgets.QGraphicsDropShadowEffect()
 		self.shadow_effect.setBlurRadius(70)

@@ -1,4 +1,6 @@
-@echo off
+    @echo off
+
+set launch_mode=release
 
 IF EXIST venv\Scripts\activate.bat (
 	echo "venv exist"
@@ -7,6 +9,4 @@ IF EXIST venv\Scripts\activate.bat (
 	pip install -r requirements.txt
 )
 
-
-
-python src/main.py
+python src/main.py %launch_mode%
