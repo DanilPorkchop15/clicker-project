@@ -5,7 +5,7 @@ from random import randint
 import time
 from PyQt5.QtMultimedia import QSound, QMediaPlayer, QMediaPlaylist, QMediaContent
 import statisticsBC
-import sys
+import sys, os
 import numpy as np
 
 class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
@@ -43,9 +43,9 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		self.BurgerIcon.addPixmap(QtGui.QPixmap(f"images/imgs/бургер{self.stats[13]}.png"))
 		self.telegram_url = 'https://t.me/porkchoppppppp'
 		self.github_url = 'https://github.com/DanilPorkchop15'
-		self.click_sound = QSound('sfx\\click.wav', self)
-		self.upgrade_sound = QSound('sfx\\upgrade.wav', self)
-		self.settings_sound = QSound('sfx\\settings.wav', self)
+		self.click_sound = QSound(os.path.join(os.getcwd(),'sfx\\click.wav'), self)
+		self.upgrade_sound = QSound(os.path.join(os.getcwd(),'sfx\\upgrade.wav'), self)
+		self.settings_sound = QSound(os.path.join(os.getcwd(),'sfx\\settings.wav'), self)
 		
 		self.shadow_effect = QtWidgets.QGraphicsDropShadowEffect()
 		self.shadow_effect.setBlurRadius(70)
