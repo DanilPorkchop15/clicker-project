@@ -66,14 +66,6 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		
 		self.events()
 		
-		def move_window(event):
-			if event.button() == QtCore.Qt.LeftButton:
-				self.move(self.pos() + event.globalPos() - self.clickPosition)
-				self.clickPosition = event.globalPos()
-				event.accept()
-		
-		self.ui.statisticsFrame.mouseMoveEvent = move_window
-		
 		self.show()
 	
 	def events(self):
