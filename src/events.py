@@ -69,7 +69,7 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		self.playlist.addMedia(media)
 		self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
 		self.player.setPlaylist(self.playlist)
-		self.player.setVolume(8)
+		self.player.setVolume(15)
 		self.player.play()
 		if self.mute:
 			self.player.setMuted(True)
