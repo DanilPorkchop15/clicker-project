@@ -4,7 +4,7 @@ from images.icons_rc import *
 import statisticsBC
 import ctypes
 
-myappid = 'PorkchopInc.Burger_Clicker.Burger_Clicker.v1.0'  # arbitrary string
+myappid = 'PorkchopInc.Burger_Clicker.Burger_Clicker.v1.0'
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 
@@ -34,7 +34,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 		self.shadow_effect.setBlurRadius(70)
 		self.shadow_effect.setOffset(0, 10)
 		
-		BurgerClicker.setWindowIcon(QtGui.QIcon('images/icons/free-icon-burger-5787014.png'))
+		BurgerClicker.setWindowIcon(QtGui.QIcon('src/images/icons/free-icon-burger-5787014.png'))
 		BurgerClicker.resize(1037, 780)
 		BurgerClicker.setMinimumSize(QtCore.QSize(1037, 780))
 		BurgerClicker.setMaximumSize(QtCore.QSize(1037, 780))
