@@ -4,11 +4,18 @@ from images.icons_rc import *
 import statisticsBC
 import ctypes
 
-myappid = 'PorkchopInc.Burger_Clicker.Burger_Clicker.v1.0'
+
+# это нужно для отображения иконки прилжения на панели задач
+myappid = 'PorkchopInc.Burger_Clicker.Burger_Clicker.v1_0'
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
-
 class Ui_MainWindow(QtWidgets.QMainWindow):
+	"""
+	Класс пользовательского интерфейса, созданный при помощи надстройки над PyQt - Qt Designer.
+	Изменен с целью поддержания механики сохранения прогресса и других нужд, таких как,
+	например добавление иконки приложения и исправление багов.
+	"""
+
 	def setupUi(self, BurgerClicker):
 		self.stats = statisticsBC.stats
 
