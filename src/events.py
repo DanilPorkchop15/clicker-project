@@ -402,5 +402,5 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 			print("Launch ReleaseBuild")
 		
 		else:
-			raise Exception("Launch mode error. Set launch mode in launch.bar (set launch_mode=release)")
+			raise Exception("Ошибка режима запуска. Установите режим в файле launch.bat (launch_mode=release)")
 
