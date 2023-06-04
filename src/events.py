@@ -164,10 +164,7 @@ class Ui_BurgerClickerEvents(QtWidgets.QMainWindow):
 		                                                              self.ui.helpUpgradeName_6,
 		                                                              self.ui.helpUpgradeBuy_6,
 		                                                              250, 'Америкос'))
-	
-	def mousePressEvent(self, event):
-		self.clickPosition = event.globalPos()
-	
+
 	def open_or_close_settings(self):
 		"""
 		Открывает или закрывает настройки
